@@ -23,8 +23,22 @@ class ViewController: UIViewController, WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Webview
         let myURL = URL(string: "https://blanik.me")
         let myRequest = URLRequest(url: myURL!)
+        
+        // Button
+        let button = UIButton.init(type: .roundedRect)
+        button.frame = CGRect(x: 178, y: 54, width: 58, height: 30)
+        button.setTitle("Reload", for: .normal)
+        button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchDown)
+        
+        self.view.addSubview(button)
         webView.load(myRequest)
     }
+    
+    @objc func buttonClicked(sender: UIButton) {
+        webView.reload()
+    }
+    
 }
