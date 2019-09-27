@@ -33,9 +33,17 @@ class ViewController: UIViewController, WKUIDelegate {
         button.setTitle("Reload", for: .normal)
         button.addTarget(self, action: #selector(buttonClicked(sender:)), for: .touchDown)
         
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
         self.view.addSubview(button)
         webView.load(myRequest)
     }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            print("Webview progress. \(Float(webView.estimatedProgress))")
+        }
+    }
+    
     
     @objc func buttonClicked(sender: UIButton) {
         webView.reload()
