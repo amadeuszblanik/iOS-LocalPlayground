@@ -12,10 +12,10 @@ import WebKit
 class ViewController: UIViewController, WKUIDelegate {
     
     var webView: WKWebView!
-
+    
     override func loadView() {
         let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView = WKWebView(frame: CGRect(), configuration: webConfiguration)
         webView.uiDelegate = self
         view = webView
     }
@@ -24,7 +24,7 @@ class ViewController: UIViewController, WKUIDelegate {
         super.viewDidLoad()
         
         // Webview
-        let myURL = URL(string: "https://blanik.me")
+        let myURL = URL(string: "http://blanik.me/")
         let myRequest = URLRequest(url: myURL!)
         
         // Button
